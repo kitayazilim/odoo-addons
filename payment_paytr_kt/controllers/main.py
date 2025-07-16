@@ -21,7 +21,6 @@ import json
 from odoo import http, _
 from odoo.exceptions import ValidationError
 from odoo.http import request
-from odoo.addons.website_sale.controllers.main import PaymentPortal
 
 _logger = logging.getLogger(__name__)
 
@@ -185,38 +184,3 @@ class PayTRController(http.Controller):
             raise Forbidden(_('Payment notification rejected due to security validation failure'))
 
 
-class PaymentPortalMondialRelay(PaymentPortal):
-    """Extended Payment Portal for PayTR
-
-    This class extends the standard payment portal to handle unique constraint
-    violations that may occur during payment transaction creation with PayTR.
-    """
-
-    @http.route()
-    def shop_payment_transaction(self, *args, **kwargs):
-        """Handle payment transaction creation for shop orders.
-
-        This method overrides the standard shop_payment_transaction method to
-        handle the case where a duplicate transaction might be created. If a
-        UniqueViolation error occurs and there's an existing PayTR transaction
-        in draft state, it returns that transaction instead of creating a new one.
-
-        Args:
-            args: Positional arguments
-            kwargs: Keyword arguments
-
-        Returns:
-            dict: Processing values for the payment transaction
-
-        Raises:
-            Exception: If the error is not related to a duplicate PayTR transaction
-        """
-        try:
-            return super().shop_payment_transaction(*args, **kwargs)
-        except psycopg2.errors.UniqueViolation as e:
-            last_tx_id = request.session.get('__website_sale_last_tx_id')
-            last_tx = request.env['payment.transaction'].browse(last_tx_id).sudo().exists()
-            if last_tx and last_tx.provider_id.code == 'paytr' and last_tx.provider_reference and last_tx.state == 'draft':
-                return last_tx._get_processing_values()
-            else:
-                raise e

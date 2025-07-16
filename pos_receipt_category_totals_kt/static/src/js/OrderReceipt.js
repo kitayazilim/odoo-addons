@@ -1,10 +1,10 @@
 /** @odoo-module */
 
 import { patch } from "@web/core/utils/patch";
-import { Order } from "@point_of_sale/app/store/models";
+import { PosOrder } from "@point_of_sale/app/models/pos_order";
 
-patch(Order.prototype, {
-    export_for_printing() {
+patch(PosOrder.prototype, {
+    export_for_printing(baseUrl, headerData) {
         const result = super.export_for_printing(...arguments);
 
         const categoryTotals = {};
@@ -12,9 +12,8 @@ patch(Order.prototype, {
 
         for (const line of this.get_orderlines()) {
             const product = line.get_product();
-
-            const category = product.categ_id ? product.categ_id[1] : 'Uncategorized';
-            const uom = product.uom_id ? product.uom_id[1] : 'Units';
+            const category = product.categ_id ? product.categ_id.name : 'Uncategorized';
+            const uom = product.uom_id ? product.uom_id.name : 'Units';
             const quantity = line.get_quantity();
 
             if (!categoryTotals[category]) {

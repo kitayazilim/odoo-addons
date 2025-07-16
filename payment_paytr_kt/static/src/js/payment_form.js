@@ -1,10 +1,9 @@
 /** @odoo-module **/
 
-import { _t } from '@web/core/l10n/translation';
 import { loadJS } from '@web/core/assets';
-
+import { _t } from '@web/core/l10n/translation';
+import { rpc, RPCError } from '@web/core/network/rpc';
 import paymentForm from '@payment/js/payment_form';
-import { RPCError } from '@web/core/network/rpc_service';
 
 paymentForm.include({
 
@@ -68,7 +67,7 @@ paymentForm.include({
         }
 
         // Initiate the payment
-        this.rpc('/payment/paytr/get-iframe-token', {
+        await rpc('/payment/paytr/get-iframe-token', {
             'reference': processingValues.reference,
             'providerId': processingValues.provider_id
         }).then( async (result) => {

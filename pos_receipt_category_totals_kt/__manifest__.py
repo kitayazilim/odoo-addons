@@ -1,10 +1,10 @@
-# Copyright 2025 Kıta Yazılım
+# Copyright 2025 Kita Yazilim
 # License LGPLv3 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 {
     "name": "POS Receipt Category and UoM Quantities",
     "summary": """Adds Category and UoM Quantities to POS Receipt""",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "LGPL-3",
     "author": "Kıta",
     "website": "kitayazilim.com",
