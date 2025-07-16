@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_receipt_category_totals_kt.OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-receipt')]//div[hasclass('before-footer')]" position="inside">
+            <!-- Category Totals Section -->
+            <t t-if="receipt.category_totals and receipt.category_totals.length > 0">
+                <br/>
+                <div class="pos-receipt-center-align" style="font-weight: bold;">Category Quantities</div>
+                <t t-foreach="receipt.category_totals" t-as="category" t-key="category.name">
+                    <div>
+                        <span t-esc="category.name"/>
+                        <span t-esc="category.quantity.toFixed(2)" class="pos-receipt-right-align"/>
+                    </div>
+                </t>
+            </t>
+
+            <!-- UoM Totals Section -->
+            <t t-if="receipt.uom_totals and receipt.uom_totals.length > 0">
+                <br/>
+                <div class="pos-receipt-center-align" style="font-weight: bold;">Unit Quantities</div>
+                <t t-foreach="receipt.uom_totals" t-as="uom" t-key="uom.name">
+                    <div>
+                        <span t-esc="uom.name"/>
+                        <span t-esc="uom.quantity.toFixed(2)" class="pos-receipt-right-align"/>
+                    </div>
+                </t>
+            </t>
+        </xpath>
+    </t>
+
+</templates>

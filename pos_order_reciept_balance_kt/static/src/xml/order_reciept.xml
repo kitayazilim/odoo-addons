@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="order_reciept_balance_pos" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('before-footer')]" position="before">
+            <div t-if="balance" style="margin-top: 1px;">
+                Bakiye             
+                <span t-esc="env.pos.format_currency(balance)" class="pos-receipt-right-align"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//t[@t-esc='receipt.name']" position="before">
+            <div><t t-esc="partner_name"/></div>
+        </xpath>
+    </t>
+</templates>
