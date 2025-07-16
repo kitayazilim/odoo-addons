@@ -1,4 +1,4 @@
-# Copyright 2023 Kita Yazilim
+# Copyright 2025 Kita Yazilim
 # License LGPLv3 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 {
@@ -8,11 +8,11 @@
     "license": "LGPL-3",
     "author": "Kıta",
     "website": "kitayazilim.com",
-    "depends": ["point_of_sale"],
+    "depends": ["point_of_sale", "pos_settle_due"],
     "assets": {
-        "point_of_sale.assets": [
+        "point_of_sale._assets_pos": [
             "pos_order_reciept_balance_kt/static/src/js/OrderReceipt.js",
-            "pos_order_reciept_balance_kt/static/src/xml/**/*",
+            "pos_order_reciept_balance_kt/static/src/xml/order_receipt.xml",
         ],
     },
     "data": [],

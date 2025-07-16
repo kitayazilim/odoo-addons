@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="pos_order_reciept_balance_kt.OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('pos-receipt')]//div[hasclass('before-footer')]" position="inside">
+            <t t-if="props.data.partner">
+                <br/>
+                <div>Balance <span t-esc='props.formatCurrency(props.data.partner.total_due || 0)' class='pos-receipt-right-align'/></div>
+            </t>
+        </xpath>
+    </t>
+
+</templates>

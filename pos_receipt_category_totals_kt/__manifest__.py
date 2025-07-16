@@ -1,4 +1,4 @@
-# Copyright 2025 Kita Yazilim
+# Copyright 2025 Kıta Yazılım
 # License LGPLv3 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 {
@@ -10,7 +10,7 @@
     "website": "kitayazilim.com",
     "depends": ["point_of_sale"],
     "assets": {
-        "point_of_sale.assets": [
+        "point_of_sale._assets_pos": [
             "pos_receipt_category_totals_kt/static/src/js/OrderReceipt.js",
             "pos_receipt_category_totals_kt/static/src/xml/order_receipt.xml",
         ],

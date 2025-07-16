@@ -1,45 +1,14 @@
 /** @odoo-module */
 
-import Registries from "point_of_sale.Registries";
-import OrderReceipt from "point_of_sale.OrderReceipt";
-const { onWillStart } = owl;  
+import { patch } from "@web/core/utils/patch";
+import { Order } from "@point_of_sale/app/store/models";
 
-const OrderReceiptBalance = OrderReceipt => class extends OrderReceipt {
-    setup() {
-        super.setup()
-        onWillStart(this.onWillStart)
-    }
-
-    async onWillStart() {
-        if (this.receipt.partner && this.receipt.partner.id) {            
-            try {
-                this.amount = await this.env.services.rpc({
-                    model: 'pos.payment',
-                    method: 'get_partner_balance',
-                    kwargs: {'partner_id' : this.receipt.partner.id},
-                },
-                {
-                    timeout: 5000,
-                })
-            } catch (error) {
-                this.amount = undefined
-            }    
+patch(Order.prototype, {
+    export_for_printing() {
+        const result = super.export_for_printing(...arguments);
+        if (this.get_partner()) {
+            result.partner = this.get_partner();
         }
-
-    } 
-
-    get balance() {
-        if (this.receipt.partner){
-            return this.amount ? this.amount : '#'
-        }
-    }
-
-    get partner_name() {
-        if (this.receipt.partner){
-            return `${this.receipt.partner.name}`
-        }
-    }
-}
-
-Registries.Component.extend(OrderReceipt, OrderReceiptBalance)
- 
+        return result;
+    },
+});

@@ -2,7 +2,7 @@
 
 {
     "name": "Payment Provider: PayTR iFrame",
-    "version": "1.1",
+    "version": "1.2",
     "category": "Accounting/Payment Providers",
     "sequence": 350,
     "summary": "A PayTR payment provider.",
@@ -10,7 +10,6 @@
     "website": "kitayazilim.com",
     "depends": ["payment", "account_payment", "sale"],
     "data": [
-        "data/payment_icon_data.xml",
         "data/payment_provider_data.xml",
         "views/payment_provider_views.xml",
     ],

@@ -7,17 +7,17 @@
         <field name="inherit_id" ref="payment.payment_provider_form"/>
         <field name="arch" type="xml">
             <group name="provider_credentials" position='inside'>
-                <group attrs="{'invisible': [('code', '!=', 'paytr')]}">
-                    <field name="paytr_merchant_id" attrs="{'required':[ ('code', '=', 'paytr'), ('state', '!=', 'disabled')]}"/>
-                    <field name="paytr_merchant_key"  attrs="{'required':[ ('code', '=', 'paytr'), ('state', '!=', 'disabled')]}"/>
-                    <field name="paytr_merchant_salt"  attrs="{'required':[ ('code', '=', 'paytr'), ('state', '!=', 'disabled')]}" />
+                <group invisible="code !=  'paytr'">
+                    <field name="paytr_merchant_id" required="code == 'paytr' and state != 'disabled'"/>
+                    <field name="paytr_merchant_key"  required="code == 'paytr' and state != 'disabled'"/>
+                    <field name="paytr_merchant_salt"  required="code == 'paytr' and state != 'disabled'" />
                 </group>
             </group>
             <page name="configuration" position='inside'>
-                <group attrs="{'invisible': [('code', '!=', 'paytr')]}">
-                    <field name="paytr_no_installment"  attrs="{'required':[ ('code', '=', 'paytr'), ('state', '!=', 'disabled')]}" />
-                    <field name="paytr_max_installment"  attrs="{'required':[ ('code', '=', 'paytr'), ('state', '!=', 'disabled')]}" />
-                    <field name="paytr_timeout"  attrs="{'required':[ ('code', '=', 'paytr'), ('state', '!=', 'disabled')]}" />
+                <group invisible="code !=  'paytr'">                    
+                    <field name="paytr_no_installment"  required="code == 'paytr' and state != 'disabled'" />
+                    <field name="paytr_max_installment"  required="code == 'paytr' and state != 'disabled'" />
+                   <field name="paytr_timeout"  required="code == 'paytr' and state != 'disabled'" />
                 </group>
             </page>
         </field>
