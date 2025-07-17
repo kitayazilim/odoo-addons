@@ -24,7 +24,7 @@ Kurulum
 
    ::
 
-      git clone https://github.com/kitayazilim/kita-odoo-apps /path/to/odoo/addons/payment_paytr_kt
+      git clone https://github.com/kitayazilim/odoo-addons.git /path/to/odoo/addons/payment_paytr_kt
 
 2. Odoo'da Uygulamalar menüsüne gidin ve "Uygulama Listesini Güncelle" seçeneğine tıklayın.
 3. "PayTR iFrame" araması yaparak modülü yükleyin.
