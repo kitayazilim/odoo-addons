@@ -16,5 +16,8 @@
         "data/res_country_data.xml",
         "data/res_partner_data.xml",
     ],
+    "images": [
+        "static/description/main_screenshot.gif",
+    ],
     "demo": [],
 }
