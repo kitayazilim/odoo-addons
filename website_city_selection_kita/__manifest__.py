@@ -22,6 +22,9 @@ It provides a consistent user experience between the backend and website interfa
             "website_city_selection_kita/static/src/js/website_city_selection.js",
         ],
     },
+    "images": [
+        "static/description/screenshot.png",
+    ],
     "installable": True,
     "auto_install": False,
     "license": "LGPL-3",
