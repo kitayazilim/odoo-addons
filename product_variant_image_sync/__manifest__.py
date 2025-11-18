@@ -49,6 +49,9 @@
     "data": [
         "views/product_attribute_views.xml",
     ],
+    "images": [
+        "static/description/screenshot.png",
+    ],
     "installable": True,
     "application": False,
     "auto_install": False,
