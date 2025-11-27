@@ -15,6 +15,7 @@
             "pos_order_reciept_balance_kt/static/src/xml/order_receipt.xml",
         ],
     },
+    "images": ["static/description/screenshot.png"],
     "data": [],
     "demo": [],
 }
