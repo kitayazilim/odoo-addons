@@ -7,7 +7,7 @@
     "sequence": 350,
     "summary": "A PayTR payment provider.",
     "author": "Kıta",
-    "website": "https://kitayazilim.com",
+    "website": "kitayazilim.com",
     "depends": ["payment", "account_payment", "sale"],
     "data": [
         "data/payment_provider_data.xml",
