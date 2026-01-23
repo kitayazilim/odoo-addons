@@ -11,6 +11,7 @@ payment gateway.
 import logging
 import re
 from odoo import _, api, models
+from odoo.addons.payment import utils as payment_utils
 from odoo.exceptions import ValidationError
 
 
@@ -45,80 +46,17 @@ class PaymentTransaction(models.Model):
         if provider_code != 'paytr':
             return super()._compute_reference(provider_code, prefix=prefix, **kwargs)
 
+        prefix = payment_utils.singularize_reference_prefix(prefix="", separator="")
         return super()._compute_reference(provider_code, prefix=re.sub(r'[\W]', '', prefix or ''), separator="", **kwargs)
 
     @api.model
-    def _compute_reference_prefix(self, provider_code, separator, **values):
-        """Compute the reference prefix from the transaction values.
-
-        For PayTR, we need to ensure that the reference prefix contains only
-        alphanumeric characters without any special characters or spaces.
-
-        Args:
-            provider_code: The code of the payment provider
-            separator: The separator to use between prefix and reference
-            values: The transaction values used to compute the reference prefix
-
-        Returns:
-            str: The computed reference prefix
-        """
-        """ Compute the reference prefix from the transaction values.
-
-        Note: This method should be called in sudo mode to give access to the documents (invoices,
-        sales orders) referenced in the transaction values.
-
-        :param str provider_code: The code of the provider handling the transaction.
-        :param str separator: The custom separator used to separate parts of the computed
-                              reference prefix.
-        :param dict values: The transaction values used to compute the reference prefix.
-        :return: The computed reference prefix.
-        :rtype: str
-        """
+    def _extract_reference(self, provider_code, payment_data):
+        """Override of `payment` to extract the reference from the APS data."""
         if provider_code != 'paytr':
-            return super()._compute_reference_prefix(provider_code, separator, **values)
+            return super()._extract_reference(provider_code, payment_data)
+        return payment_data.get('merchant_oid')
 
-        prefix = super()._compute_reference_prefix(provider_code, separator="", **values)
-
-        return re.sub(r'[\W]', '', prefix or '')
-
-    def _get_tx_from_notification_data(self, provider_code, notification_data):
-        """Find the transaction based on PayTR notification data.
-
-        This method retrieves the transaction record corresponding to the
-        notification data received from PayTR after a payment attempt.
-
-        Args:
-            provider_code: The code of the payment provider
-            notification_data: The normalized notification data from PayTR
-
-        Returns:
-            recordset: The transaction if found
-
-        Raises:
-            ValidationError: If no transaction is found matching the reference
-        """
-        """ Override of payment to find the transaction based on Buckaroo data.
-
-        :param str provider_code: The code of the provider that handled the transaction
-        :param dict notification_data: The normalized notification data sent by the provider
-        :return: The transaction if found
-        :rtype: recordset of `payment.transaction`
-        :raise: ValidationError if the data match no transaction
-        """
-        tx = super()._get_tx_from_notification_data(provider_code, notification_data)
-        if provider_code != 'paytr':
-            return tx
-
-        reference = notification_data.get('merchant_oid')
-        tx = self.search([('reference', '=', reference), ('provider_code', '=', 'paytr')])
-        if not tx:
-            raise ValidationError(
-                "PayTR: " + _("No transaction found matching reference %s.", reference)
-            )
-
-        return tx
-
-    def _process_notification_data(self, notification_data):
+    def _apply_updates(self, notification_data):
         """Process the transaction based on PayTR notification data.
 
         This method updates the transaction status based on the notification
@@ -138,7 +76,7 @@ class PaymentTransaction(models.Model):
         :return: None
         :raise: ValidationError if inconsistent data were received
         """
-        super()._process_notification_data(notification_data)
+        super()._apply_updates(notification_data)
         if self.provider_code != 'paytr':
             return
 

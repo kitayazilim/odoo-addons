@@ -2,7 +2,7 @@
 
 {
     'name': 'Payment Provider: PayTR iFrame',
-    'version': '1.2',
+    'version': '1.3',
     'category': 'Accounting/Payment Providers',
     'sequence': 350,
     'summary': "A PayTR payment provider.",

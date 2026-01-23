@@ -34,28 +34,21 @@ class PaymentProvider(models.Model):
     paytr_no_installment = fields.Boolean(string="Tek çekim", default=True, help="Taksit görüntülenmesin")
     paytr_max_installment = fields.Char(string="En fazla taksit sayısı", default='0', help="Gösterilecek en fazlataksit sayısını belirler! 1-12 taksit")
 
-    @api.model
-    def _get_compatible_providers(self, *args, currency_id=None, **kwargs):
-        """Filter providers based on currency compatibility.
+    def _get_supported_currencies(self):
+        """Override of `payment` to return the supported currencies."""
+        supported_currencies = super()._get_supported_currencies()
+        if self.code == 'paytr':
+            supported_currencies = supported_currencies.filtered(
+                lambda c: c.name in ['TL', 'TRY', 'EUR', 'USD', 'GBP', 'RUB']
+            )
+        return supported_currencies
 
-        PayTR only supports specific currencies (TRY, EUR, USD, GBP, RUB).
-        This method filters out PayTR from the available providers when
-        the selected currency is not supported.
-
-        Args:
-            currency_id: The ID of the currency to check compatibility with
-
-        Returns:
-            recordset: Compatible payment providers
-        """
-        """ Override of `payment` to unlist Bank of Georgia providers for unsupported currencies. """
-        providers = super()._get_compatible_providers(*args, currency_id=currency_id, **kwargs)
-
-        currency = self.env['res.currency'].browse(currency_id).exists()
-        if currency and currency.name not in ['TL', 'TRY', 'EUR', 'USD', 'GBP', 'RUB']:
-            providers = providers.filtered(lambda p: p.code != 'paytr')
-
-        return providers
+    def _get_default_payment_method_codes(self):
+        """ Override of `payment` to return the default payment method codes. """
+        self.ensure_one()
+        if self.code != 'paytr':
+            return super()._get_default_payment_method_codes()
+        return ['paytr']
 
     def _paytr_generate_vals(self, tx, IP):
         """Generate the values for the PayTR API request.
@@ -128,7 +121,7 @@ class PaymentProvider(models.Model):
             'currency': currency,
             'no_installment': no_installment,
             'max_installment': max_installment,
-            'lang': 'tr',
+            'lang': 'tr' if self.env.lang == 'tr_TR' else 'en',
             'merchant_ok_url': merchant_ok_url,
             'merchant_fail_url': merchant_fail_url,
             'debug_on': debug_on,

@@ -3,37 +3,26 @@
 import { loadJS } from '@web/core/assets';
 import { _t } from '@web/core/l10n/translation';
 import { rpc, RPCError } from '@web/core/network/rpc';
-import paymentForm from '@payment/js/payment_form';
+import { patch } from '@web/core/utils/patch';
+import { PaymentForm } from '@payment/interactions/payment_form';
 
-paymentForm.include({
+patch(PaymentForm.prototype, {
 
-    paytrData: undefined,
+    setup() {
+        super.setup();
+        this.paytrData = {}; // Store the form data of each instantiated payment method.
+    },
 
-    // #=== DOM MANIPULATION ===#
-
-    /**
-     * Prepare the inline form of PayTR for direct payment.
-     *
-     * @private
-     * @param {number} providerId - The id of the selected payment option's provider.
-     * @param {string} providerCode - The code of the selected payment option's provider.
-     * @param {number} paymentOptionId - The id of the selected payment option.
-     * @param {string} paymentMethodCode - The code of the selected payment method, if any.
-     * @param {string} flow - The online payment flow of the selected payment option.
-     * @return {void}
-     */
     async _prepareInlineForm(providerId, providerCode, paymentOptionId, paymentMethodCode, flow) {
         if (providerCode !== 'paytr') {
-            this._super(...arguments);
+            await super._prepareInlineForm(...arguments);
+            return;
+        } else if (flow === 'token') {
             return;
         }
+        this._setPaymentFlow('direct');
 
-        // Check if the inline form values were already extracted.
-        this.paytrData ??= {}; // Store the form data of each instantiated payment method.
-        if (flow === 'token') {
-            return; // Don't show the form for tokens.
-        } else if (!document.getElementById('paytriframe')) {
-            this._setPaymentFlow('direct'); // Overwrite the flow even if no re-instantiation.
+        if (!document.getElementById('paytriframe')) {
             let html_src =  `<div id="paytr_modal" class="modal" tabindex="-1" role="dialog">` +
             '<div class="modal-dialog modal-lg" role="document">' +
                 '<div class="modal-content">' +
@@ -46,23 +35,11 @@ paymentForm.include({
             document.querySelector('main').insertAdjacentHTML('beforeend', html_src)
             return; // Don't re-extract the data if already done for this payment method.
         }
-
     },
 
-    /**
-     * Process the direct payment flow.
-     *
-     * @override method from payment.payment_form
-     * @private
-     * @param {string} providerCode - The code of the selected payment option's provider.
-     * @param {number} paymentOptionId - The id of the selected payment option.
-     * @param {string} paymentMethodCode - The code of the selected payment method, if any.
-     * @param {object} processingValues - The processing values of the transaction.
-     * @return {void}
-     */
     async _processDirectFlow(providerCode, paymentOptionId, paymentMethodCode, processingValues) {
         if (providerCode !== 'paytr') {
-            this._super(...arguments);
+            await super._processDirectFlow(...arguments);
             return;
         }
 
@@ -88,4 +65,6 @@ paymentForm.include({
         });
     },
 
-});
+
+})
+

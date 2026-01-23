@@ -5,7 +5,6 @@
         <field name="name">PayTR iFrame</field>
         <field name="code">paytr</field>
         <field name="sequence">1000</field>
-        <field name="active">False</field>
         <field name="image" type="base64" file="payment_paytr_kt/static/description/paytr.svg"/>
         <field name="support_tokenization">False</field>
         <field name="support_express_checkout">False</field>
@@ -15,6 +14,7 @@
     <record id="payment_provider_paytr" model="payment.provider">
         <field name="name">PayTR iFrame</field>
         <field name="code">paytr</field>
+        <field name="module_id" ref="base.module_payment_paytr_kt"/>
         <field name="payment_method_ids"
             eval="[Command.set([ref('payment_method_paytr'),
                 ])]"

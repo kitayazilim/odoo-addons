@@ -79,9 +79,16 @@ class PayTRController(http.Controller):
                 return res
             elif transaction_status == "failed":
                 # More descriptive error message with transaction details
+                error_msg = res.get('reason', 'bilinmeyen hata oluştu')
+                if isinstance(res.get('errors'), dict):
+                    try:
+                        error_msg = "\n".join(res.get('errors').values())
+                    except Exception:
+                        error_msg = res.get('reason', 'bilinmeyen hata oluştu')
+
                 error_message = _(
                     "Payment failed: %s (Code: %s). Please verify your payment details and try again.",
-                    res.get("reason", _('Unknown payment gateway error')), code
+                    error_msg, code
                 )
                 _logger.info("Payment failed for transaction %s: %s (Code: %s)",
                           tx_sudo.reference, res.get("reason", _('Unknown payment gateway error')), code)
@@ -134,13 +141,13 @@ class PayTRController(http.Controller):
 
         # Check the integrity of the notification
         received_signature = data.get('hash')
-        tx_sudo = request.env['payment.transaction'].sudo()._get_tx_from_notification_data(
+        tx_sudo = request.env['payment.transaction'].sudo()._search_by_reference(
             'paytr', data
         )
         self._verify_notification_signature(data, received_signature, tx_sudo)
 
         # Handle the notification data
-        tx_sudo._handle_notification_data('paytr', data)
+        tx_sudo._process('paytr', data)
         return "OK"
 
     @staticmethod
