@@ -14,7 +14,7 @@ Bu modül, Odoo ile PayTR ödeme altyapısını entegre eder ve müşterileriniz
 
 Gereksinimler
 -------------
-- Odoo v16.0, v17.0, v18.0
+- Odoo v16.0, v17.0, v18.0, v19.0
 - PayTR mağaza hesabı
 - PayTR API bilgileri (Mağaza Numarası, API Key, API Salt)
 
