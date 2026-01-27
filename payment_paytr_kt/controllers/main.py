@@ -145,6 +145,7 @@ class PayTRController(http.Controller):
             'paytr', data
         )
         self._verify_notification_signature(data, received_signature, tx_sudo)
+        data['amount'] = float(data.get('payment_amount', 0)) / 100
 
         # Handle the notification data
         tx_sudo._process('paytr', data)
