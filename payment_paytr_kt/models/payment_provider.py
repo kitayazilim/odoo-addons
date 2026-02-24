@@ -16,6 +16,7 @@ import json
 from werkzeug import urls
 from odoo import fields, models, api
 
+
 class PaymentProvider(models.Model):
     """Payment Provider Model Extension for PayTR
 
@@ -56,6 +57,13 @@ class PaymentProvider(models.Model):
             providers = providers.filtered(lambda p: p.code != 'paytr')
 
         return providers
+
+    def _get_default_payment_method_codes(self):
+        """ Override of `payment` to return the default payment method codes. """
+        default_codes = super()._get_default_payment_method_codes()
+        if self.code != 'paytr':
+            return default_codes
+        return {'paytr'}
 
     def _paytr_generate_vals(self, tx, IP):
         """Generate the values for the PayTR API request.
