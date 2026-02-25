@@ -76,8 +76,8 @@ paymentForm.include({
             // $('body').unblock();
             document.getElementById('paytriframe').src = `https://www.paytr.com/odeme/guvenli/${result.token}`;
             await loadJS("/payment_paytr_kt/static/src/lib/iframeResizer.min.js");
-            window.iFrameResize({},'#paytriframe');
             $('#paytr_modal').modal('show');
+            window.iFrameResize({},'#paytriframe');
 
         }).catch((error) => {
             if (error instanceof RPCError) {
