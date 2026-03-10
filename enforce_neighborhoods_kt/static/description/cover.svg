@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+    <title id="title">enforce_neighborhoods_kt cover</title>
+    <desc id="desc">Cover image for the enforce_neighborhoods_kt Odoo addon</desc>
+
+    <defs>
+        <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#0f172a"/>
+            <stop offset="55%" stop-color="#1e293b"/>
+            <stop offset="100%" stop-color="#334155"/>
+        </linearGradient>
+        <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#14b8a6"/>
+            <stop offset="100%" stop-color="#06b6d4"/>
+        </linearGradient>
+        <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#020617" flood-opacity="0.55"/>
+        </filter>
+    </defs>
+
+    <rect width="1280" height="720" fill="url(#bg)"/>
+
+    <circle cx="1100" cy="110" r="240" fill="#22d3ee" opacity="0.08"/>
+    <circle cx="170" cy="640" r="260" fill="#2dd4bf" opacity="0.1"/>
+
+    <rect x="78" y="72" width="1124" height="576" rx="24" fill="#0b1220" opacity="0.58"/>
+
+    <g transform="translate(146 176)" filter="url(#shadow)">
+        <rect x="0" y="0" width="150" height="150" rx="30" fill="url(#accent)"/>
+        <path d="M50 75l25 24 46-53" fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <g transform="translate(340 196)">
+        <text x="0" y="0" fill="#e2e8f0" font-family="Montserrat, Poppins, Segoe UI, Arial, sans-serif" font-size="63" font-weight="700" letter-spacing="1">
+      Mahalle Bilgisi Zorunluluğu
+        </text>
+        <text x="2" y="64" fill="#94a3b8" font-family="Montserrat, Poppins, Segoe UI, Arial, sans-serif" font-size="32" font-weight="500">
+      İş ortağı adres kalitesi ve mahalle zorunluluğu
+        </text>
+    </g>
+
+    <g transform="translate(340 362)">
+        <rect x="0" y="0" width="760" height="64" rx="16" fill="#111827" opacity="0.88"/>
+        <circle cx="40" cy="32" r="10" fill="#14b8a6"/>
+        <text x="70" y="42" fill="#cbd5e1" font-family="Montserrat, Poppins, Segoe UI, Arial, sans-serif" font-size="27">
+      İş ortağı kayitlarinda mahalle secimini zorunluluğu
+        </text>
+    </g>
+
+    <g transform="translate(340 448)">
+        <rect x="0" y="0" width="665" height="64" rx="16" fill="#111827" opacity="0.88"/>
+        <circle cx="40" cy="32" r="10" fill="#06b6d4"/>
+        <text x="70" y="42" fill="#cbd5e1" font-family="Montserrat, Poppins, Segoe UI, Arial, sans-serif" font-size="27">
+      İl ve ilce surecleri icin daha temiz veri
+        </text>
+    </g>
+
+    <text x="1086" y="623" fill="#64748b" font-family="Montserrat, Poppins, Segoe UI, Arial, sans-serif" font-size="24" text-anchor="end">
+    KITA ODOO ADDONS
+    </text>
+</svg>

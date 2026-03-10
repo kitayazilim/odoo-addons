@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="view_city_tree" model="ir.ui.view">
+        <field name="name">res.city.tree( in enforce_neighborhoods_kt)</field>
+        <field name="model">res.city</field>
+        <field name="inherit_id" ref="base_address_extended.view_city_tree"/>
+        <field name="arch" type="xml">
+            <field name="state_id" position="after">
+                <field name="neighborhood_kt_count" invisible="1"/>
+            </field>
+        </field>
+    </record>
+
+
+    <!-- Extend the existing city search view to add filter for cities without neighborhoods -->
+    <record id="view_city_filter_kt" model="ir.ui.view">
+        <field name="name">res.city.search.kt</field>
+        <field name="model">res.city</field>
+        <field name="inherit_id" ref="base_address_extended.view_city_filter"/>
+        <field name="arch" type="xml">
+            <field name="country_id" position="after">
+                <separator/>
+                <filter string="No Neighborhoods" name="no_neighborhoods" domain="[('neighborhood_kt_count', '=', 0)]"/>
+            </field>
+        </field>
+    </record>
+</odoo>

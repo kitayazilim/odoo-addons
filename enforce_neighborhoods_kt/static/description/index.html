@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semt - İlçe Bilgisi Zorunluluğu</title>
+    <style>
+        :root {
+            --bg: #f4f7fb;
+            --panel: #ffffff;
+            --text: #1f2937;
+            --muted: #64748b;
+            --primary: #0ea5a4;
+            --primary-dark: #0f766e;
+            --line: #dbe4ee;
+            --warn: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            background: radial-gradient(circle at top right, #dff6f3 0%, var(--bg) 48%, #edf3ff 100%);
+            color: var(--text);
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .page {
+            max-width: 980px;
+            margin: 0 auto;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+        }
+
+        .hero img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .content {
+            padding: 28px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 32px;
+            color: var(--primary-dark);
+        }
+
+        h2 {
+            margin: 24px 0 10px;
+            font-size: 22px;
+            color: var(--primary-dark);
+            border-left: 4px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        p.lead {
+            margin: 0 0 16px;
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        ul {
+            margin: 8px 0 16px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .card {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #f8fbfd;
+            padding: 14px 16px;
+            margin: 12px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: #d9f5f3;
+            color: #115e59;
+            border: 1px solid #9de3dd;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+
+        .warning {
+            border-left: 4px solid var(--warn);
+            background: #fff7ed;
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin-top: 14px;
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--line);
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        code {
+            background: #eef2f7;
+            border: 1px solid #dbe4ee;
+            border-radius: 5px;
+            padding: 2px 6px;
+            font-family: "Courier New", monospace;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="hero">
+        <img src="cover.png" alt="enforce_neighborhoods_kt kapak görseli">
+    </div>
+
+    <div class="content">
+        <h1>Semt - İlçe Bilgisi Zorunluluğu</h1>
+        <p class="lead">
+            Bu modül, İş Ortağı adreslerinde semt/ilçe bilgisini zorunlu hale getirerek eksik veya hatalı kayıtları azaltır,
+            adres verisini standartlaştırır ve operasyonel süreçlerde veri kalitesini artırır.
+        </p>
+
+        <h2>Öne Çıkan Özellikler</h2>
+        <div class="card">
+            <ul>
+                <li>İş Ortağı kayıtlarında şehir/semt alanları için daha kontrollü giriş akışı sağlar.</li>
+                <li>Türkiye odaklı adres veri yapısı ile uyumlu çalışır.</li>
+                <li>Website ve Website Sale adres formlarında tutarlı davranış sağlar.</li>
+                <li>Eksik mahalle/semt bilgisi nedeniyle oluşan iş süreci hatalarını azaltır.</li>
+            </ul>
+        </div>
+
+        <h2>Bağımlılıklar</h2>
+        <p>
+            <span class="badge">base</span>
+            <span class="badge">base_address_extended</span>
+            <span class="badge">contacts</span>
+            <span class="badge">website</span>
+            <span class="badge">website_sale</span>
+        </p>
+
+        <h2>Kullanım Notları</h2>
+        <ul>
+            <li>Modülü yükledikten sonra iş ortağı adres kayıtlarında semt/ilçe bilgisini eksiksiz girin.</li>
+            <li>Website tarafındaki adres formlarında zorunlu alan akışını test edin.</li>
+            <li>Özel formlarınız varsa ilgili alanları <code>res.partner</code> üzerindeki kurallarla uyumlu tutun.</li>
+        </ul>
+
+        <div class="warning">
+            <strong>Önemli:</strong> Canlı ortama almadan önce test ortamında adres formu, e-ticaret checkout ve partner kayıt
+            akışlarını uçtan uca doğrulamanız önerilir.
+        </div>
+
+        <div class="footer">
+            <strong>Yazar:</strong> Kıta Yazılım<br>
+            <strong>Lisans:</strong> LGPL-3
+        </div>
+    </div>
+</div>
+</body>
+</html>

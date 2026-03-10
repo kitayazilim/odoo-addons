@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="address_kt" inherit_id="website_sale.address">
+        <xpath expr="//input[@name='zip']/parent::div/parent::t" position="before">
+            <t t-if="country and country.enforce_neighborhoods_kt">
+                <div t-attf-class="form-group #{error.get('neighborhood_kt_id') and 'o_has_error' or ''} col-lg-6 div_neighborhood_kt">
+                    <label class="col-form-label" for="neighborhood_kt_id">
+                        Neighborhood
+                    </label>
+                    <select name="neighborhood_kt_id" t-attf-class="form-control #{error.get('neighborhood_kt_id') and 'is-invalid' or ''}" data-init="1">
+                        <option value=""></option>
+                        <t t-foreach="city_neighborhoods or []" t-as="n">
+                            <option t-att-value="n.id" t-att-selected="n.id == ('neighborhood_kt_id' in checkout and checkout['neighborhood_kt_id'] != '' and int(checkout['neighborhood_kt_id']))">
+                                <t t-esc="n.name"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
+            </t>
+            <t t-else="">
+            <div t-attf-class="form-group col-lg-6 div_neighborhood_kt">
+                <label class="col-form-label" for="neighborhood_kt_id" style="display: none;">
+                    Neighborhood
+                </label>
+                <select name="neighborhood_kt_id" style="display: none;" t-attf-class="form-control #{error.get('neighborhood_kt_id') and 'is-invalid' or ''}" data-init="1">
+                <option value=""></option>
+                    <t t-foreach="city_neighborhoods or []" t-as="n">
+                        <option t-att-value="n.id" t-att-selected="n.id == ('neighborhood_kt_id' in checkout and checkout['neighborhood_kt_id'] != '' and int(checkout['neighborhood_kt_id']))">
+                            <t t-esc="n.name"/>
+                        </option>
+                    </t>
+                </select>
+            </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>

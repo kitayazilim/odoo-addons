@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_neighborhood_kt_tree" model="ir.ui.view">
+        <field name="name">res.neighborhood.kt.tree</field>
+        <field name="model">res.neighborhood.kt</field>
+        <field name="arch" type="xml">
+            <list string="Neighborhoods">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="city_id"/>
+                <field name="state_id"/>
+                <field name="country_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_neighborhood_kt_form" model="ir.ui.view">
+        <field name="name">res.neighborhood.kt.form</field>
+        <field name="model">res.neighborhood.kt</field>
+        <field name="arch" type="xml">
+            <form string="Neighborhood">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                        </group>
+                        <group>
+                            <field name="country_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="state_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="city_id" options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_neighborhood_kt_search" model="ir.ui.view">
+        <field name="name">res.neighborhood.kt.search</field>
+        <field name="model">res.neighborhood.kt</field>
+        <field name="arch" type="xml">
+            <search string="Neighborhoods">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="city_id"/>
+                <field name="state_id"/>
+                <field name="country_id"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_by_country" string="Country" context="{'group_by': 'country_id'}"/>
+                    <filter name="group_by_state" string="State" context="{'group_by': 'state_id'}"/>
+                    <filter name="group_by_city" string="City" context="{'group_by': 'city_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_res_neighborhood_kt" model="ir.actions.act_window">
+        <field name="name">Neighborhoods</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.neighborhood.kt</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_neighborhood_kt_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new neighborhood
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_res_neighborhood_kt" name="Neighborhoods" parent="contacts.menu_localisation" action="action_res_neighborhood_kt" sequence="5"/>
+</odoo>

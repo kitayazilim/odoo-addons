@@ -1,0 +1,181 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* enforce_neighborhoods_kt
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-21 15:38+0000\n"
+"PO-Revision-Date: 2025-04-21 15:38+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model,name:enforce_neighborhoods_kt.model_res_city
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_neighborhood_kt__city_id
+#: model_terms:ir.ui.view,arch_db:enforce_neighborhoods_kt.view_neighborhood_kt_search
+msgid "City"
+msgstr "İlçe"
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model,name:enforce_neighborhoods_kt.model_res_partner
+msgid "Contact"
+msgstr "Kontak"
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model,name:enforce_neighborhoods_kt.model_res_country
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_neighborhood_kt__country_id
+#: model_terms:ir.ui.view,arch_db:enforce_neighborhoods_kt.view_neighborhood_kt_search
+msgid "Country"
+msgstr "Ülke"
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_partner__country_enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_users__country_enforce_neighborhoods_kt
+msgid "Country Enforces Neighborhoods"
+msgstr "Mahalle zorunlu!"
+
+#. module: enforce_neighborhoods_kt
+#: model_terms:ir.actions.act_window,help:enforce_neighborhoods_kt.action_res_neighborhood_kt
+msgid "Create a new neighborhood"
+msgstr "Mahalle oluştur"
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_neighborhood_kt__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_neighborhood_kt__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_neighborhood_kt__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_country__enforce_neighborhoods_kt
+msgid "Enforce Neighborhoods"
+msgstr "Mahelle zorunlu"
+
+#. module: enforce_neighborhoods_kt
+#: model_terms:ir.ui.view,arch_db:enforce_neighborhoods_kt.view_neighborhood_kt_search
+msgid "Group By"
+msgstr ""
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_neighborhood_kt__id
+msgid "ID"
+msgstr ""
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,help:enforce_neighborhoods_kt.field_res_country__enforce_neighborhoods_kt
+#: model:ir.model.fields,help:enforce_neighborhoods_kt.field_res_partner__country_enforce_neighborhoods_kt
+#: model:ir.model.fields,help:enforce_neighborhoods_kt.field_res_users__country_enforce_neighborhoods_kt
+msgid ""
+"If checked, neighborhood will be a required field for addresses in this "
+"country"
+msgstr ""
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_neighborhood_kt____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_neighborhood_kt__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_neighborhood_kt__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model,name:enforce_neighborhoods_kt.model_res_neighborhood_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_partner__neighborhood_kt_id
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_users__neighborhood_kt_id
+#: model_terms:ir.ui.view,arch_db:enforce_neighborhoods_kt.view_neighborhood_kt_form
+msgid "Neighborhood"
+msgstr "Mahalle"
+
+#. module: enforce_neighborhoods_kt
+#: model_terms:ir.ui.view,arch_db:enforce_neighborhoods_kt.address_kt
+msgid ""
+"Neighborhood\n"
+"                        <span class=\"text-danger\"/>"
+msgstr ""
+"Mahalle\n"
+"                        <span class=\"text-danger\"/>"
+#. module: enforce_neighborhoods_kt
+#: model_terms:ir.ui.view,arch_db:enforce_neighborhoods_kt.address_kt
+msgid ""
+"Neighborhood\n"
+"                    <span class=\"text-danger\"/>"
+msgstr ""
+"Mahalle\n"
+"                    <span class=\"text-danger\"/>"
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_neighborhood_kt__code
+msgid "Neighborhood Code"
+msgstr "Mahalle Kodu"
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_neighborhood_kt__name
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_partner__neighborhood_kt_name
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_users__neighborhood_kt_name
+msgid "Neighborhood Name"
+msgstr "Mahalle Adı"
+
+#. module: enforce_neighborhoods_kt
+#. odoo-python
+#: code:addons/enforce_neighborhoods_kt/models/res_partner_kt.py:0
+#, python-format
+msgid "Neighborhood is required for addresses in %s."
+msgstr "%s için adreslerde mahalle belirtilmesi zorunludur."
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.actions.act_window,name:enforce_neighborhoods_kt.action_res_neighborhood_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_city__neighborhood_kt_ids
+#: model:ir.ui.menu,name:enforce_neighborhoods_kt.menu_res_neighborhood_kt
+#: model_terms:ir.ui.view,arch_db:enforce_neighborhoods_kt.view_neighborhood_kt_search
+#: model_terms:ir.ui.view,arch_db:enforce_neighborhoods_kt.view_neighborhood_kt_tree
+msgid "Neighborhoods"
+msgstr "Mahalleler"
+
+#. module: enforce_neighborhoods_kt
+#: model_terms:ir.ui.view,arch_db:enforce_neighborhoods_kt.view_city_filter_kt
+msgid "No Neighborhoods"
+msgstr "Mahallesi olmayan İlçeler"
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_city__neighborhood_kt_count
+msgid "Number of Neighborhoods"
+msgstr "Mahalle sayısı"
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.fields,field_description:enforce_neighborhoods_kt.field_res_neighborhood_kt__state_id
+#: model_terms:ir.ui.view,arch_db:enforce_neighborhoods_kt.view_neighborhood_kt_search
+msgid "State"
+msgstr "il"
+
+#. module: enforce_neighborhoods_kt
+#. odoo-python
+#: code:addons/enforce_neighborhoods_kt/models/res_partner_kt.py:0
+#, python-format
+msgid "The neighborhood must belong to the selected city."
+msgstr "Mahalle, seçilen şehre ait olmalıdır"
+
+#. module: enforce_neighborhoods_kt
+#: model:ir.model.constraint,message:enforce_neighborhoods_kt.constraint_res_neighborhood_kt_name_city_uniq
+msgid "The neighborhood name must be unique per city!"
+msgstr "Mahalle adı her şehir için benzersiz olmalıdır!"

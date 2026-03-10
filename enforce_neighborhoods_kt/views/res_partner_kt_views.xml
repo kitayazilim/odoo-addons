@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_inherit_neighborhood_kt" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.neighborhood.kt</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='street2']" position="after">
+                <field name="country_enforce_neighborhoods_kt" invisible="1"/>
+                <field name="neighborhood_kt_id" placeholder="Mahalle" options="{'no_create': True}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='child_ids']//form//field[@name='street2']" position="after">
+                <field name="country_enforce_cities" invisible="1"/>
+                <field name="neighborhood_kt_id" placeholder="Mahalle" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_partner_address_form_inherit_neighborhood_kt" model="ir.ui.view">
+        <field name="name">res.partner.address.form.inherit.neighborhood.kt</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_address_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='street2']" position="after">
+                <field name="country_enforce_neighborhoods_kt" invisible="1"/>
+                <field name="city_id" invisible="1"/>
+                <field name="neighborhood_kt_id" placeholder="Mahalle" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_neighborhood_kt_public,res.neighborhood.kt.public,model_res_neighborhood_kt,,1,0,0,0
+access_res_neighborhood_kt_user,res.neighborhood.kt.user,model_res_neighborhood_kt,base.group_user,1,0,0,0
+access_res_neighborhood_kt_manager,res.neighborhood.kt.manager,model_res_neighborhood_kt,base.group_partner_manager,1,1,1,1
