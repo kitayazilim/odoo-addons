@@ -4,6 +4,7 @@
     "description": """Bu modül, Odoo'daki İş Ortağı kayıtlarında bulunan city (İlçe) alanı için
             Türkiye'ye özgü semt/ilçe seçeneklerini ekler ve seçilebilir hale getirir. Amaç,
             adres doğruluğunu artırmak ve Türkiye'ye özel adres girdilerini standardize etmektir.""",
+    "category": "Sales/CRM",
     "version": "18.0.1.0.3",
     "license": "LGPL-3",
     "author": "Kıta",

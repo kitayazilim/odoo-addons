@@ -1,13 +1,13 @@
 {
-    "name": "Semt - İlçe Bilgisi Zorunluluğu",
-    "category": "Hidden/Tools",
+    "name": "Mahalle Bilgisi Zorunluluğu",
     "description": """
-Bu modül, Odoo'daki İş Ortağı kayıtlarında bulunan city (İlçe) alanı için Türkiye'ye özgü semt/ilçe seçeneklerini ekler ve seçilebilir hale getirir.
-Amaç, adres doğruluğunu artırmak ve Türkiye'ye özel adres girdilerini standardize etmektir.
-Ayrıca, bu modül ile semt/ilçe bilgisi zorunlu hale getirilerek, eksik veya hatalı adres girişlerinin önüne geçilir.
-Böylece, müşteri veritabanının kalitesi yükseltilir ve lojistik süreçlerde yaşanabilecek sorunlar minimize edilir.
+        Bu modül, Odoo'daki İş Ortağı kayıtlarında bulunan city (İlçe) alanı için mahalle bilgilerini getirir.
+        data dosyasında bulunan res.partner.csv dosyasındaki kayıtlar, res.partner modeline eklenir ve city alanına bağlı olarak mahalle bilgisi sağlanır.
+         - res.partner modeline mahalle bilgisi ekler
+         - city alanına bağlı olarak mahalle bilgisi sağlar
     """,
-    "version": "1.0",
+    "category": "Sales/CRM",
+    "version": "18.0.1.0.1",
     "license": "LGPL-3",
     "author": "Kıta",
     "maintainer": "Kıta Yazılım",
