@@ -59,7 +59,7 @@
         <field name="name">Neighborhoods</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.neighborhood.kt</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_neighborhood_kt_search"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
