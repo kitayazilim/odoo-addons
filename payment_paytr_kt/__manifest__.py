@@ -22,4 +22,7 @@
         ],
     },
     "license": "LGPL-3",
+    "images": [
+        "static/description/PayTR_kita.png",
+    ],
 }
