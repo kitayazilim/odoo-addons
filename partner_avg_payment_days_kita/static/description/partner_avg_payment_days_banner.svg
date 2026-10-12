@@ -38,7 +38,7 @@
 
       <circle cx="78" cy="470" r="13" fill="#e3f3f0"/>
       <path d="m72 470 4 4 8-9" fill="none" stroke="#138f82" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="102" y="476">SMS, e-posta ve ödeme bağlantısı</text>
+      <text x="102" y="476">SMS, e-posta ve PayTR ile tahsilat</text>
     </g>
 
     <g filter="url(#shadow)">
@@ -90,7 +90,7 @@
 
       <rect x="948" y="463" width="162" height="38" rx="19" fill="#f5f2e9"/>
       <path d="M968 482h13m-5-5 5 5-5 5" fill="none" stroke="#ad8740" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      <text x="989" y="487" fill="#84672f" font-size="13" font-weight="700">Ödeme bağlantısı</text>
+      <text x="989" y="487" fill="#84672f" font-size="13" font-weight="700">PayTR ile ödeme</text>
     </g>
 
     <text x="66" y="555" fill="#827987" font-size="13">Kıta Yazılım</text>
