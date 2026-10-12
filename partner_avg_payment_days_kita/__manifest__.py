@@ -21,7 +21,7 @@
         "views/res_config_settings_views.xml",
         "views/menu_views.xml",
     ],
-    "images": ["static/description/partner_avg_payment_days_banner.svg"],
+    "images": ["static/description/partner_avg_payment_days_banner.png"],
     "installable": True,
     "application": False,
     "auto_install": False,
