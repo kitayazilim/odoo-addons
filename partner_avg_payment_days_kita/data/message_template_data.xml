@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="sms_template_balance_notify" model="sms.template">
+            <field name="name">Bakiye Hatırlatma SMS</field>
+            <field name="model_id" ref="partner_avg_payment_days_kita.model_partner_avg_payment_days" />
+            <field name="body">Sn. {{object.partner_id.name}} cari hesabınıza ait ödeme bekleyen {{object.balance}} {{object.company_id.currency_id.symbol or ''}} tutarında bakiye bulunmaktadır. ödeme yaptıysanız lütfen bu sms i dikkate almayınız. Hesaplanma tarihi {{object.sync_date}}. Ödeme Linki: {{object.payment_link_url}} </field>
+        </record>
+
+        <record id="mail_template_balance_notify" model="mail.template">
+            <field name="name">Bakiye Hatırlatma Email</field>
+            <field name="model_id" ref="partner_avg_payment_days_kita.model_partner_avg_payment_days" />
+            <field name="email_from">{{object.company_id.partner_id.email}}</field>
+            <field name="email_cc"></field>
+            <field name="subject">Ödenmeyi bekleyen bakiyeniz bulunmaktadır.</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="email_to"></field>            <!--${object.partner_id.email}-->
+            <field name="auto_delete" eval="False" />
+            <field name="lang">{{object.partner_id.lang}}</field>
+            <field name="body_html" type="html">
+                <body style="margin: 0; padding: 0;">
+                    <table border="0" width="100%" cellpadding="0" bgcolor="#ededed" style="padding: 20px; background-color: #ededed; border-collapse:separate;">
+                        <tbody>
+                            <!-- HEADER -->
+                            <tr width="600">
+                                <td align="center">
+                                    <table width="600px" border="0" cellpadding="0" bgcolor="#875A7B" style="width: 600px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">
+                                        <tr>
+                                            <td valign="middle" align="left" style="color:#ffffff; font-size: 14px">
+                                                <t t-esc="object.company_id.name"/>
+                                            </td>
+                                            <td valign="middle" align="right" style="text-align:right;">
+                                                <img t-attf-src="/logo.png?company={{object.company_id.id}}" style="padding: 0px; margin: 0px; height: auto; width: 80px;"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <!-- CONTENT -->
+                            <tr width="600">
+                                <td align="center">
+                                    <table width="600px" border="0" cellpadding="0" bgcolor="#ffffff" style="width: 600px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;">
+                                        <td valign="top" style="font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;">
+                                            <p style="width:550px;">
+                                                Sn
+                                                <strong>
+                                                    <t t-esc="object.partner_id.name or ''"/>
+                                                </strong>,
+                                            </p>
+                                            <p style="width:550px;">
+                                                Cari hesabınıza ait ödeme bekleyen
+                                                <strong>
+                                                    <t t-esc="object.balance" t-options="{'widget': 'monetary', 'display_currency': object.company_id.currency_id}"/>
+                                                </strong>
+                                                <t t-if="object.readable_balance">
+                                                    yazıyla;
+                                                    <strong>
+                                                        <t t-esc="object.readable_balance or ''"/>
+                                                    </strong>
+                                                </t>
+                                                tutarında bakiye bulunmaktadır. Ödeme yaptıysanız lütfen bu bildirimi dikkate almayınız.
+                                            </p>
+                                            <p style="width:550px;">
+                                                Bakiye ile ilgili sorun olduğunu düşünüyorsanız lütfen bizimle iletişime geçiniz.
+                                            </p>
+                                            <p style="width:550px;">
+                                                <strong>
+                                                    Ödeme Linki:
+                                                    <t t-esc="object.payment_link_url"/>
+                                                </strong>
+                                            </p>
+                                            <p style="width:550px;">
+                                                İyi çalışmalar dileriz.
+                                            </p>
+                                        </td>
+                                    </table>
+                                </td>
+                            </tr>
+                            <!-- FOOTER -->
+                            <tr width="600">
+                                <td align="center">
+                                    <table width="600px" border="0" cellpadding="0" bgcolor="#875A7B" style="width: 600px; background-color: #fff; padding: 20px; border-collapse:separate;">
+                                        <tr>
+                                            <td valign="middle" align="left" style="padding-top: 10px; padding-bottom: 10px; font-size: 14px;">
+                                                <t t-esc="object.company_id.phone"/>
+                                            </td>
+                                            <td valign="middle" align="left" style="padding-top: 10px; padding-bottom: 10px; font-size: 14px;">
+                                                <t t-esc="object.company_id.email"/>
+                                            </td>
+                                            <td valign="middle" align="left" style="padding-top: 10px; padding-bottom: 10px; font-size: 14px; text-align:right;">
+                                                <t t-esc="object.company_id.website"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </body>
+            </field>
+        </record>
+    </data>
+</odoo>

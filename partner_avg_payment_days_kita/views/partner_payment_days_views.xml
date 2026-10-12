@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Partner Avg Payment Days Form View -->
+    <record id="view_partner_avg_payment_days_form" model="ir.ui.view">
+        <field name="name">partner.avg.payment.days.form</field>
+        <field name="model">partner.avg.payment.days</field>
+        <field name="arch" type="xml">
+            <form string="Ortalama Ödeme Günleri">
+                <header>
+                    <button name="action_calculate_avg_days" string="Hesapla" type="object" class="oe_highlight"/>
+                    <button name="action_send_sms" string="SMS" context="{'force_sent': True}" type="object" icon="fa-comment" class="oe_link" confirm="Müşterinize bakiye hatırlatıcı SMS gönderilsin mi?" invisible="balance &lt;= 0"/>
+                    <button name="action_email_data" string="E-posta" context="{'force_sent': True}" type="object" icon="fa-envelope" class="oe_link" confirm="Müşterinize bakiye hatırlatıcı E-posta gönderilsin mi?" invisible="balance &lt;= 0"/>
+                </header>
+                <div class="alert alert-info" role="alert">
+                    <ul>
+                        <li>İş ortaklarının ortalama ödeme günleri sistem tarafından otomatik olarak hesaplanır.</li>
+                        <li>Hesaplama, iş ortağının muhasebe kayıtlarındaki son hareket tarihine göre otomatik olarak güncellenir.</li>
+                        <li>Anında hesaplama yapmak isterseniz "Hesapla" butonunu kullanabilirsiniz.</li>
+                    </ul>
+                </div>
+                <sheet>
+                    <group string="Genel Bilgiler" class="o_group o_group_1col">
+                        <group>
+                            <field name="partner_id" string="İş Ortağı"/>
+                            <field name="sales_person_id"/>
+                            <field name="category_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="company_currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="last_activity_date" widget="remaining_days"/>
+                            <field name="sync_date" widget="remaining_days"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group string="Finansal Bilgiler" class="o_group o_group_1col">
+                        <group>
+                            <field name="balance"/>
+                            <field name="open_invoice_balance"/>
+                            <field name="open_invoice_balance_usd"/>
+                            <field name="open_invoice_balance_eur"/>
+                            <field name="balance_curr"/>
+                            <field name="balance_curr_overdue"/>
+                            <label for="balance_usd"/>
+                            <div class="o_row">
+                                <label for="balance_usd" string="$"/>
+                                <field name="balance_usd"/>
+                            </div>
+                            <label for="balance_eur"/>
+                            <div class="o_row">
+                                <span>
+                                    <field name="balance_eur" class="d-inline" style="margin-right:5px;"/>
+                                    <label for="balance_eur" string="€"/>
+                                </span>
+                            </div>
+                        </group>
+                        <group>
+                            <label for="avg_days"/>
+                            <div class="o_row">
+                                <span>
+                                    <field name="avg_days" class="d-inline" style="margin-right:5px;"/>
+                                    <label for="avg_days" string="Gün"/>
+                                </span>
+                            </div>
+                            <label for="credit_avg_days"/>
+                            <div class="o_row">
+                                <span>
+                                    <field name="credit_avg_days" class="d-inline" style="margin-right:5px;"/>
+                                    <label for="credit_avg_days" string="Gün"/>
+                                </span>
+                            </div>
+                            <label for="debit_avg_days"/>
+                            <div class="o_row">
+                                <span>
+                                    <field name="debit_avg_days" class="d-inline" style="margin-right:5px;"/>
+                                    <label for="debit_avg_days" string="Gün"/>
+                                </span>
+                            </div>
+                        </group>
+                    </group>
+                    <group string="İletişim Bilgileri" class="o_group o_group_1col">
+                        <group>
+                            <field name="phone" widget="phone"/>
+                            <field name="mobile" widget="phone"/>
+                            <field name="email" widget="email"/>
+                        </group>
+                        <group>
+                            <field name="last_sms_date"/>
+                            <field name="last_email_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notlar">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+<chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Partner Avg Payment Days Tree View -->
+    <record id="view_partner_avg_payment_days_tree" model="ir.ui.view">
+        <field name="name">partner.avg.payment.days.tree</field>
+        <field name="model">partner.avg.payment.days</field>
+        <field name="arch" type="xml">
+            <list create="0" string="Ortalama Ödeme Günleri">
+                <header>
+                    <button name="action_calculate_avg_days" type="object" string="Hesapla"/>
+                    <button name="action_send_sms" type="object" string="SMS"/>
+                    <button name="action_email_data" type="object" string="E-posta"/>
+                </header>
+                <field name="partner_id"/>
+                <field name="sales_person_id"/>
+                <field name="category_id" widget="many2many_tags" optional="show"/>
+                <field name="phone" optional="hide"/>
+                <field name="mobile" optional="show"/>
+                <field name="balance" sum="Total Balance"/>
+                <field name="balance_curr" optional="show" sum="Total Balance in currency"/>
+                <field name="balance_usd" optional="hide" sum="Total Balance in USD"/>
+                <field name="balance_eur" optional="hide" sum="Total Balance in EUR"/>
+                <field name="open_invoice_balance" optional="show" sum="Total Open Invoice Balance"/>
+                <field name="open_invoice_balance_usd" optional="hide" sum="Total Open Invoice Balance USD"/>
+                <field name="open_invoice_balance_eur" optional="hide" sum="Total Open Invoice Balance EUR"/>
+                <field name="avg_days" string="Ortalama Vade (Gün)"/>
+                <field name="credit_avg_days" optional="hide" string="Alacak Ort. Vade (Gün)"/>
+                <field name="debit_avg_days" optional="hide" string="Borç Ort. Vade (Gün)"/>
+                <field name="company_currency_id" optional="hide" column_invisible="1"/>
+                <field name="last_activity_date" optional="hide" widget="remaining_days"/>
+                <field name="sync_date" optional="show" widget="remaining_days"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+                <button name="action_send_sms" title="SMS Gönder" type="object" icon="fa-comment text-success" invisible="balance &lt;= 0"/>
+                <button name="action_email_data" title="Mail Gönder" type="object" icon="fa-envelope text-primary" invisible="balance &lt;= 0"/>
+                <button name="action_create_payment_link" title="Ödeme Linki Oluştur" type="object" icon="fa-link text-info" invisible="balance &lt;= 0"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Partner Avg Payment Days Search View -->
+    <record id="view_partner_avg_payment_days_search" model="ir.ui.view">
+        <field name="name">partner.avg.payment.days.search</field>
+        <field name="model">partner.avg.payment.days</field>
+        <field name="arch" type="xml">
+            <search string="Ortalama Ödeme Günleri">
+                <field name="partner_id"/>
+                <field name="sales_person_id"/>
+                <field name="category_id"/>
+                <field name="avg_days"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <separator/>
+                <filter string="Müşteriler" name="customers" domain="[('partner_id.customer_rank','&gt;',0)]"/>
+                <filter string="Tedarikçiler" name="suppliers" domain="[('partner_id.supplier_rank','&gt;',0)]"/>
+                <separator/>
+                <filter string="Mevcut Şirket" name="current_company" domain="[('company_id','=',allowed_company_ids[0])]" groups="base.group_multi_company"/>
+                <separator/>
+                <filter string="Bakiyesi Olanlar" name="balance" domain="[('balance','&gt;',0)]"/>
+                <filter string="Son Hesaplama 30 Gün Öncesi" name="recently_calculated" domain="[('sync_date','&lt;=',(context_today()-relativedelta(days=30)))]" help="Son 30 gün içinde hesaplanmış iş ortaklarını gösterir."/>
+                <filter string="Son Hareket 30 Gün Öncesi" name="no_recent_activity" domain="[('last_activity_date','&lt;=',(context_today()-relativedelta(days=30)))]" help="Son 30 gün içinde hareketi olmayan iş ortaklarını gösterir."/>
+                <separator />
+                <filter string="Son Hesaplama" name="last_calculation" date="sync_date"/>
+                <filter string="Son Hareket" name="last_activity" date="last_activity_date"/>
+                <group expand="0" string="Group By">
+                    <filter string="İş Ortağı" name="group_by_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Satış Temsilcisi" name="group_by_sales_person" context="{'group_by': 'sales_person_id'}"/>
+                    <filter string="Etiketler" name="group_by_tags" context="{'group_by': 'category_id'}"/>
+                    <filter string="Şirket" name="group_by_company" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>
+                    <filter string="Son Hesaplama" name="group_by_sync_date" context="{'group_by': 'sync_date'}"/>
+                    <filter string="Son Hareket" name="group_by_last_activity" context="{'group_by': 'last_activity_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+
+    <!-- Actions -->
+    <record id="action_partner_avg_payment_days" model="ir.actions.act_window">
+        <field name="name">Ortalama Ödeme Günleri</field>
+        <field name="res_model">partner.avg.payment.days</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_partner_avg_payment_days_search"/>
+        <field name="context">{'search_default_balance': 1 }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Henüz ortalama ödeme günü hesaplanmış iş ortağı yok.
+            </p>
+            <p>
+                İş ortaklarının ortalama ödeme günleri otomatik olarak hesaplanır.
+            </p>
+        </field>
+    </record>
+
+
+</odoo>

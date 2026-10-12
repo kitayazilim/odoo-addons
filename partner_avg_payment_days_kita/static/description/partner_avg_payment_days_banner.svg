@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-labelledby="title desc">
+  <title id="title">Partner Ortalama Ödeme Günleri</title>
+  <desc id="desc">İş ortağı bakiyelerini, ortalama vade göstergelerini, açık siparişleri ve tahsilat hatırlatmalarını tek ekranda takip edin.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f6fa"/>
+      <stop offset="1" stop-color="#edf5f6"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#875a7b"/>
+      <stop offset="1" stop-color="#67436f"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#30243b" flood-opacity=".12"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="600" rx="28" fill="url(#background)"/>
+  <circle cx="1090" cy="20" r="180" fill="#875a7b" opacity=".06"/>
+  <circle cx="1100" cy="590" r="240" fill="#159c91" opacity=".06"/>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="66" y="74" width="48" height="5" rx="2.5" fill="#159c91"/>
+    <text x="66" y="122" fill="#6c5470" font-size="17" font-weight="700" letter-spacing="2">ODOO 18 • KITA YAZILIM</text>
+    <text x="66" y="194" fill="#33263a" font-size="47" font-weight="700">Ortalama Ödeme</text>
+    <text x="66" y="250" fill="#33263a" font-size="47" font-weight="700">Günleri</text>
+    <text x="66" y="294" fill="#625b66" font-size="20">Cari hesap ve tahsilat takibi</text>
+    <text x="66" y="324" fill="#625b66" font-size="20">iş ortaklarınız için tek ekranda.</text>
+
+    <g font-size="16" fill="#443b49">
+      <circle cx="78" cy="382" r="13" fill="#e3f3f0"/>
+      <path d="m72 382 4 4 8-9" fill="none" stroke="#138f82" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="102" y="388">Ortalama vade ve bakiye görünümü</text>
+
+      <circle cx="78" cy="426" r="13" fill="#e3f3f0"/>
+      <path d="m72 426 4 4 8-9" fill="none" stroke="#138f82" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="102" y="432">Çoklu para birimi ve açık siparişler</text>
+
+      <circle cx="78" cy="470" r="13" fill="#e3f3f0"/>
+      <path d="m72 470 4 4 8-9" fill="none" stroke="#138f82" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="102" y="476">SMS, e-posta ve ödeme bağlantısı</text>
+    </g>
+
+    <g filter="url(#shadow)">
+      <rect x="592" y="70" width="548" height="458" rx="20" fill="#fff"/>
+    </g>
+    <path d="M612 70h508a20 20 0 0 1 20 20v47H592V90a20 20 0 0 1 20-20Z" fill="url(#accent)"/>
+    <circle cx="619" cy="99" r="5" fill="#fff" opacity=".55"/>
+    <circle cx="637" cy="99" r="5" fill="#fff" opacity=".55"/>
+    <circle cx="655" cy="99" r="5" fill="#fff" opacity=".55"/>
+    <text x="682" y="105" fill="#fff" font-size="16" font-weight="700">İş Ortağı Özeti</text>
+    <text x="1086" y="104" text-anchor="end" fill="#f2eaf3" font-size="13">Güncel görünüm</text>
+
+    <rect x="620" y="160" width="236" height="100" rx="12" fill="#f8f5f9"/>
+    <text x="640" y="187" fill="#77707b" font-size="13">ORTALAMA VADE</text>
+    <text x="640" y="232" fill="#3e3046" font-size="34" font-weight="700">42 <tspan font-size="17" font-weight="400">gün</tspan></text>
+    <circle cx="822" cy="193" r="15" fill="#eee5f0"/>
+    <path d="M822 184v10l7 4" fill="none" stroke="#875a7b" stroke-width="2" stroke-linecap="round"/>
+
+    <rect x="872" y="160" width="240" height="100" rx="12" fill="#f0f8f6"/>
+    <text x="892" y="187" fill="#77707b" font-size="13">CARİ BAKİYE</text>
+    <text x="892" y="232" fill="#28776f" font-size="31" font-weight="700">₺ 125.430</text>
+    <path d="M1067 218v-19m-7 7 7-7 7 7" fill="none" stroke="#159c91" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <text x="622" y="298" fill="#3f3544" font-size="15" font-weight="700">Bakiye dağılımı</text>
+    <text x="1110" y="298" text-anchor="end" fill="#8a838e" font-size="12">Örnek görünüm</text>
+    <rect x="622" y="316" width="488" height="1" fill="#eeeaf0"/>
+
+    <text x="622" y="350" fill="#625b66" font-size="14">Şirket para birimi</text>
+    <text x="1108" y="350" text-anchor="end" fill="#403646" font-size="14" font-weight="700">₺ 125.430</text>
+    <rect x="622" y="362" width="488" height="7" rx="3.5" fill="#eeeaf0"/>
+    <rect x="622" y="362" width="328" height="7" rx="3.5" fill="#875a7b"/>
+
+    <text x="622" y="397" fill="#625b66" font-size="14">Açık sipariş</text>
+    <text x="1108" y="397" text-anchor="end" fill="#403646" font-size="14" font-weight="700">₺ 18.250</text>
+    <rect x="622" y="409" width="488" height="7" rx="3.5" fill="#eeeaf0"/>
+    <rect x="622" y="409" width="132" height="7" rx="3.5" fill="#159c91"/>
+
+    <rect x="622" y="444" width="488" height="1" fill="#eeeaf0"/>
+    <g>
+      <rect x="622" y="463" width="142" height="38" rx="19" fill="#f3edf4"/>
+      <circle cx="643" cy="482" r="9" fill="#875a7b"/>
+      <path d="M639 479h8m-8 4h6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="659" y="487" fill="#604767" font-size="13" font-weight="700">SMS hatırlatma</text>
+
+      <rect x="775" y="463" width="162" height="38" rx="19" fill="#edf6f5"/>
+      <rect x="792" y="475" width="16" height="12" rx="2" fill="none" stroke="#148e83" stroke-width="1.6"/>
+      <path d="m793 476 7 6 7-6" fill="none" stroke="#148e83" stroke-width="1.5" stroke-linejoin="round"/>
+      <text x="816" y="487" fill="#28776f" font-size="13" font-weight="700">E-posta bildirimi</text>
+
+      <rect x="948" y="463" width="162" height="38" rx="19" fill="#f5f2e9"/>
+      <path d="M968 482h13m-5-5 5 5-5 5" fill="none" stroke="#ad8740" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="989" y="487" fill="#84672f" font-size="13" font-weight="700">Ödeme bağlantısı</text>
+    </g>
+
+    <text x="66" y="555" fill="#827987" font-size="13">Kıta Yazılım</text>
+    <text x="1138" y="555" text-anchor="end" fill="#827987" font-size="13">İş ortaklarınızın cari görünümü, bir bakışta.</text>
+  </g>
+</svg>

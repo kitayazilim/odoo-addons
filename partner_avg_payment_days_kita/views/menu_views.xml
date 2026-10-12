@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_partner_avg_payment_days" name="Ortalama Vade ve Tahsilat Ekranı" parent="account.account_reports_management_menu" action="action_partner_avg_payment_days" sequence="10"/>
+</odoo>
