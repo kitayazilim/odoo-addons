@@ -8,16 +8,16 @@
         <field name="arch" type="xml">
             <group name="provider_credentials" position='inside'>
                 <group invisible="code !=  'paytr'">
-                    <field name="paytr_merchant_id" required="code == 'paytr' and state != 'disabled'"/>
-                    <field name="paytr_merchant_key"  required="code == 'paytr' and state != 'disabled'"/>
-                    <field name="paytr_merchant_salt"  required="code == 'paytr' and state != 'disabled'" />
+                    <field name="paytr_merchant_id" required="code == 'paytr'"/>
+                    <field name="paytr_merchant_key"  required="code == 'paytr'"/>
+                    <field name="paytr_merchant_salt"  required="code == 'paytr'" />
                 </group>
             </group>
             <page name="configuration" position='inside'>
                 <group invisible="code !=  'paytr'">
-                    <field name="paytr_no_installment"  required="code == 'paytr' and state != 'disabled'" />
-                    <field name="paytr_max_installment"  required="code == 'paytr' and state != 'disabled'" />
-                   <field name="paytr_timeout"  required="code == 'paytr' and state != 'disabled'" />
+                    <field name="paytr_no_installment"  required="code == 'paytr'" />
+                    <field name="paytr_max_installment"  required="code == 'paytr'" />
+                   <field name="paytr_timeout"  required="code == 'paytr'" />
                 </group>
             </page>
         </field>

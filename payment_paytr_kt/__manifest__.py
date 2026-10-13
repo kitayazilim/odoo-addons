@@ -2,15 +2,16 @@
 
 {
     "name": "Payment Provider: PayTR iFrame",
-    "version": "1.3",
+    "version": "1.4",
     "category": "Accounting/Payment Providers",
     "sequence": 350,
     "summary": "A PayTR payment provider.",
     "author": "Kıta",
-    "website": "kitayazilim.com",
+    "website": "https://kitayazilim.com",
     "depends": ["payment", "account_payment", "sale"],
     "data": [
         "data/payment_provider_data.xml",
+        "data/payment_method_data.xml",
         "views/payment_provider_views.xml",
     ],
     "application": False,

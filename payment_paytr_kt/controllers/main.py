@@ -13,7 +13,6 @@ import hashlib
 import logging
 import pprint
 import base64
-import psycopg2
 
 from werkzeug.exceptions import Forbidden
 
@@ -34,7 +33,7 @@ class PayTRController(http.Controller):
     _return_url = '/payment/paytr/return'  # Endpoint for payment return notifications
     _iframe_token = '/payment/paytr/get-iframe-token'  # Endpoint for generating iframe tokens
 
-    @http.route(_iframe_token, type='json', auth='public')
+    @http.route(_iframe_token, type='jsonrpc', auth='public')
     def get_iframe_token(self, **data):
         """Generate an iframe token for PayTR payment.
 
@@ -75,7 +74,9 @@ class PayTRController(http.Controller):
             res = json.loads(resp)
             transaction_status = res.get('status')
             if transaction_status == "success":
-                tx_sudo.provider_reference = res.get('token')
+                # Store the token in the provider_reference
+                # Either use _record() to queue payment data for processing, or pass payment_safe_write=True to the context after ensuring that the update can tolerate a rollback.
+                tx_sudo.with_context(payment_safe_write=True).provider_reference = res.get('token')
                 return res
             elif transaction_status == "failed":
                 # More descriptive error message with transaction details
@@ -107,7 +108,7 @@ class PayTRController(http.Controller):
                 raise ValidationError(error_message)
 
     @http.route(
-        _return_url, type='http', auth='public', methods=['POST'], csrf=False, save_session=False
+        _return_url, type='http', auth='public', methods=['POST'], csrf=False
     )
     def paytr_return_from_checkout(self, **data):
         """Process the notification data sent by PayTR after payment.
@@ -144,11 +145,11 @@ class PayTRController(http.Controller):
         tx_sudo = request.env['payment.transaction'].sudo()._search_by_reference(
             'paytr', data
         )
-        self._verify_notification_signature(data, received_signature, tx_sudo)
-        data['amount'] = float(data.get('payment_amount', 0)) / 100
-
-        # Handle the notification data
-        tx_sudo._process('paytr', data)
+        if tx_sudo:
+            self._verify_notification_signature(data, received_signature, tx_sudo)
+            data['amount'] = float(data.get('payment_amount', 0)) / 100
+            # Handle the notification data
+            tx_sudo._record(data)
         return "OK"
 
     @staticmethod
@@ -186,9 +187,6 @@ class PayTRController(http.Controller):
         if not hmac.compare_digest(received_signature.encode(), expected_signature):
             _logger.warning("PayTR Security Error: Received notification with invalid signature")
             # Log additional details for debugging (without exposing sensitive data)
-            _logger.debug("Signature validation failed for transaction reference: %s",
-                       notification_data.get('merchant_oid', 'Unknown'))
+            _logger.debug("Signature validation failed for transaction reference: %s", notification_data.get('merchant_oid', 'Unknown'))
             # Use Forbidden exception to prevent potential security issues
             raise Forbidden(_('Payment notification rejected due to security validation failure'))
-
-

@@ -95,8 +95,8 @@ class PaymentProvider(models.Model):
         # buraya dış ip adresinizi (https://www.whatismyip.com/) yazmalısınız. Aksi halde geçersiz paytr_token hatası alırsınız.
         user_ip = IP
         timeout_limit = self.paytr_timeout or '30'  # İşlem zaman aşımı süresi - dakika cinsinden
-        debug_on = '1' if self.state == 'test' else '0'  # Hata mesajlarının ekrana basılması için entegrasyon ve test sürecinde 1 olarak bırakın. Daha sonra 0 yapabilirsiniz.
-        test_mode = '1' if self.state == 'test' else '0'  # Mağaza canlı modda iken test işlem yapmak için 1 olarak gönderilebilir.
+        debug_on = '1' if not self.is_live else '0'  # Hata mesajlarının ekrana basılması için entegrasyon ve test sürecinde 1 olarak bırakın. Daha sonra 0 yapabilirsiniz.
+        test_mode = '1' if not self.is_live else '0'  # Mağaza canlı modda iken test işlem yapmak için 1 olarak gönderilebilir.
         no_installment = '0' if self.paytr_no_installment else '1'  # Taksit yapılmasını istemiyorsanız, sadece tek çekim sunacaksanız 1 yapın
         # Sayfada görüntülenecek taksit adedini sınırlamak istiyorsanız uygun şekilde değiştirin.
         # Sıfır (0) gönderilmesi durumunda yürürlükteki en fazla izin verilen taksit geçerli olur.

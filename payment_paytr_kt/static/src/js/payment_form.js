@@ -1,16 +1,20 @@
 /** @odoo-module **/
 
+import { usePlugin } from "@odoo/owl";
 import { loadJS } from '@web/core/assets';
 import { _t } from '@web/core/l10n/translation';
 import { rpc, RPCError } from '@web/core/network/rpc';
 import { patch } from '@web/core/utils/patch';
 import { PaymentForm } from '@payment/interactions/payment_form';
+import { BootstrapInstance } from "@web/core/utils/bootstrap_plugin";
+
 
 patch(PaymentForm.prototype, {
 
     setup() {
         super.setup();
         this.paytrData = {}; // Store the form data of each instantiated payment method.
+        this.bootstrap = usePlugin(BootstrapInstance);
     },
 
     async _prepareInlineForm(providerId, providerCode, paymentOptionId, paymentMethodCode, flow) {
@@ -49,12 +53,11 @@ patch(PaymentForm.prototype, {
             'providerId': processingValues.provider_id
         }).then( async (result) => {
             this._enableButton();
-            // $('body').unblock();
             document.getElementById('paytriframe').src = `https://www.paytr.com/odeme/guvenli/${result.token}`;
             await loadJS("/payment_paytr_kt/static/src/lib/iframeResizer.min.js");
-            $('#paytr_modal').modal('show');
+            //$('#paytr_modal').modal('show');
+            this.bootstrap.getOrCreateInstance(Modal, "#paytr_modal").show();
             window.iFrameResize({},'#paytriframe');
-
         }).catch((error) => {
             if (error instanceof RPCError) {
                 this._displayErrorDialog(_t("Payment processing failed"), error.data.message);
