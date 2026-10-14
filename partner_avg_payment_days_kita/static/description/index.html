@@ -1,124 +1,111 @@
-<section class="oe_container">
-  <div
-    class="oe_row oe_spaced"
-    style="max-width: 1000px; margin-left: auto; margin-right: auto"
-  >
-    <div class="oe_span12 text-center">
-      <h2 class="oe_slogan" style="color: #875a7b">
-        Tahsilat Ekranları: Bakiyeye Ödeme Linki Oluşturma
-      </h2>
-      <h3 class="oe_slogan">Cari hesap ve tahsilat takibi, tek ekranda</h3>
-      <p class="oe_mt32">
-        Müşteri ve tedarikçilerinizin cari bakiyelerini, ortalama
-        vade göstergelerini, açık siparişlerini ve tahsilat
-        iletişimini Odoo içinden takip edin. Ayrıca tahsilat
-        ekranlarında bakiyeye istinade ödeme linki oluşturma özelliği sunar.
-      </p>
-      <img
-        class="img img-responsive oe_screenshot"
-        src="partner_avg_payment_days_banner.svg"
-        alt="Ortalama ödeme günleri, cari bakiye, açık sipariş ve PayTR tahsilat özeti"
-        style="max-width: 100%; height: auto"
-      />
-    </div>
-  </div>
-</section>
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <section class="oe_container">
+      <div
+        class="oe_row oe_spaced"
+        style="max-width: 1000px; margin-left: auto; margin-right: auto"
+      >
+        <div class="oe_span12 text-center">
+          <h2 class="oe_slogan" style="color: #875a7b">
+            Tahsilat Ekranları: Bakiyeye Ödeme Linki Oluşturma
+          </h2>
+          <h3 class="oe_slogan">Cari hesap ve tahsilat takibi, tek ekranda</h3>
+          <p class="oe_mt32">
+            Müşteri ve tedarikçilerinizin cari bakiyelerini, ortalama vade
+            göstergelerini, açık siparişlerini ve tahsilat iletişimini Odoo
+            içinden takip edin. Ayrıca tahsilat ekranlarında bakiyeye istinade
+            ödeme linki oluşturma özelliği sunar.
+          </p>
+          <img
+            class="img img-responsive oe_screenshot"
+            src="partner_avg_payment_days_banner.svg"
+            alt="Ortalama ödeme günleri, cari bakiye, açık sipariş ve PayTR tahsilat özeti"
+            style="max-width: 100%; height: auto"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="oe_container oe_dark">
+      <div
+        class="oe_row oe_spaced"
+        style="max-width: 1000px; margin-left: auto; margin-right: auto"
+      >
+        <h3 class="oe_slogan">Finansal görünüm ve tahsilat araçları</h3>
+        <div class="oe_span6">
+          <ul>
+            <li>Genel bakiye için ortalama gün göstergesi</li>
+            <li>Alacak ve borç hesapları için ayrı ortalama gün değerleri</li>
+            <li>Şirket para biriminde bakiye ve USD/EUR bakiye takibi</li>
+            <li>Açık satış siparişlerindeki faturalanmamış tutarlar</li>
+          </ul>
+        </div>
+        <div class="oe_span6">
+          <ul>
+            <li>
+              İş ortağı, satış temsilcisi, etiket ve şirkete göre arama ve
+              gruplama
+            </li>
+            <li>Müşteri ve tedarikçiler için ayrı filtreler</li>
+            <li>
+              Kullanıcı tarafından başlatılan SMS ve e-posta bakiye
+              hatırlatmaları
+            </li>
+            <li>PayTR ile bakiye ödeme bağlantısı oluşturma</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="oe_container">
+      <div
+        class="oe_row oe_spaced"
+        style="max-width: 1000px; margin-left: auto; margin-right: auto"
+      >
+        <h3 class="oe_slogan">Ortalama gün değerleri nasıl hesaplanır?</h3>
+        <div class="oe_span12">
+          <p>
+            Eklenti, seçili şirketin yayınlanmış muhasebe kayıtlarındaki alacak
+            ve borç hesaplarını kullanır. Varsayılan hesaplama dönemi son 365
+            gündür; Muhasebe ayarlarından değiştirilebilir ve istenirse bir
+            yevmiye hariç tutulabilir.
+          </p>
+          <p>
+            Gün değerleri, mevcut bakiye tutarını karşılayan muhasebe
+            hareketlerinin tarihleri baz alınarak tutar ağırlıklı ortalama
+            şeklinde hesaplanır. Hesaplama döneminde karşılığı bulunmayan bakiye
+            için dönem başlangıcı esas alınır.
+          </p>
+          <p>
+            <strong>Önemli:</strong> Bu gösterge, tamamlanmış tahsilatların tek
+            tek kaç günde yapıldığını değil, mevcut cari bakiyenin hareket
+            tarihine göre yaşını ifade eder. Kayıtlar ve hesaplamalar
+            zamanlanmış görevlerle günlük güncellenir; istenirse
+            <strong>Hesapla</strong> düğmesiyle elle de yenilenebilir.
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
 
 <section class="oe_container oe_dark">
   <div
     class="oe_row oe_spaced"
     style="max-width: 1000px; margin-left: auto; margin-right: auto"
   >
-    <h3 class="oe_slogan">
-      Finansal görünüm ve tahsilat araçları
-    </h3>
-    <div class="oe_span6">
-      <ul>
-        <li>Genel bakiye için ortalama gün göstergesi</li>
-        <li>
-          Alacak ve borç hesapları için ayrı ortalama
-          gün değerleri
-        </li>
-        <li>Şirket para biriminde bakiye ve USD/EUR bakiye takibi</li>
-        <li>
-          Açık satış siparişlerindeki
-          faturalanmamış tutarlar
-        </li>
-      </ul>
-    </div>
-    <div class="oe_span6">
-      <ul>
-        <li>
-          İş ortağı, satış temsilcisi, etiket ve
-          şirkete göre arama ve gruplama
-        </li>
-        <li>
-          Müşteri ve tedarikçiler için ayrı filtreler
-        </li>
-        <li>
-          Kullanıcı tarafından başlatılan SMS ve
-          e-posta bakiye hatırlatmaları
-        </li>
-        <li>
-          PayTR ile bakiye ödeme bağlantısı oluşturma
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="oe_container">
-  <div
-    class="oe_row oe_spaced"
-    style="max-width: 1000px; margin-left: auto; margin-right: auto"
-  >
-    <h3 class="oe_slogan">
-      Ortalama gün değerleri nasıl hesaplanır?
-    </h3>
+    <h3 class="oe_slogan">Liste görünümünden hızlıca inceleyin</h3>
     <div class="oe_span12">
       <p>
-        Eklenti, seçili şirketin yayınlanmış muhasebe
-        kayıtlarındaki alacak ve borç hesaplarını
-        kullanır. Varsayılan hesaplama dönemi son 365
-        gündür; Muhasebe ayarlarından değiştirilebilir
-        ve istenirse bir yevmiye hariç tutulabilir.
-      </p>
-      <p>
-        Gün değerleri, mevcut bakiye tutarını
-        karşılayan muhasebe hareketlerinin tarihleri baz alınarak
-        tutar ağırlıklı ortalama şeklinde
-        hesaplanır. Hesaplama döneminde
-        karşılığı bulunmayan bakiye için
-        dönem başlangıcı esas alınır.
-      </p>
-      <p>
-        <strong>Önemli:</strong> Bu gösterge, tamamlanmış
-        tahsilatların tek tek kaç günde
-        yapıldığını değil, mevcut cari bakiyenin
-        hareket tarihine göre yaşını ifade eder.
-        Kayıtlar ve hesaplamalar zamanlanmış görevlerle
-        günlük güncellenir; istenirse
-        <strong>Hesapla</strong> düğmesiyle elle de yenilenebilir.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="oe_container oe_dark">
-  <div
-    class="oe_row oe_spaced"
-    style="max-width: 1000px; margin-left: auto; margin-right: auto"
-  >
-    <h3 class="oe_slogan">
-      Liste görünümünden hızlıca inceleyin
-    </h3>
-    <div class="oe_span12">
-      <p>
-        Bakiye, dövizli bakiye, açık sipariş tutarı ve
-        ortalama gün bilgilerini aynı listede
-        görüntüleyin. Müşteri, tedarikçi, bakiye
-        veya satış temsilcisine göre filtreleyin; çok
-        şirketli kullanımda şirket bazında takip edin.
+        Bakiye, dövizli bakiye, açık sipariş tutarı ve ortalama gün bilgilerini
+        aynı listede görüntüleyin. Müşteri, tedarikçi, bakiye veya satış
+        temsilcisine göre filtreleyin; çok şirketli kullanımda şirket bazında
+        takip edin.
       </p>
       <img
         class="img img-responsive oe_screenshot"
@@ -138,19 +125,15 @@
     <h3 class="oe_slogan">SMS, e-posta ve PayTR ile tahsilat</h3>
     <div class="oe_span12">
       <p>
-        Pozitif bakiyesi bulunan iş ortaklarına detay ekranından
-        SMS veya e-posta hatırlatması gönderebilirsiniz.
-        Gönderimler otomatik değildir. Aynı iş
-        ortağına yeniden bildirim göndermek için bekleme
-        süresi, SMS ve e-posta kanalı için ayrı ayrı
-        ayarlanabilir; varsayılan süre 7 gündür.
+        Pozitif bakiyesi bulunan iş ortaklarına detay ekranından SMS veya
+        e-posta hatırlatması gönderebilirsiniz. Gönderimler otomatik değildir.
+        Aynı iş ortağına yeniden bildirim göndermek için bekleme süresi, SMS ve
+        e-posta kanalı için ayrı ayrı ayarlanabilir; varsayılan süre 7 gündür.
       </p>
       <p>
-        Bakiye için PayTR ödeme bağlantısı
-        oluşturabilirsiniz. Kullanmak için
+        Bakiye için PayTR ödeme bağlantısı oluşturabilirsiniz. Kullanmak için
         <strong>payment_paytr_kt</strong> eklentisinin kurulu ve PayTR
-        sağlayıcısının Odoo'da
-        yapılandırılmış olması gerekir.
+        sağlayıcısının Odoo'da yapılandırılmış olması gerekir.
       </p>
       <img
         class="img img-responsive oe_screenshot"
@@ -171,21 +154,18 @@
     <div class="oe_span12">
       <ul>
         <li>Odoo 18 için hazırlanmıştır.</li>
+        <li>Menü yolu: Muhasebe &gt; Ortalama Vade ve Tahsilat Ekranı.</li>
         <li>
-          Menü yolu: Muhasebe &gt; Ortalama Vade ve Tahsilat Ekranı.
+          Muhasebe ayarlarından hesaplama dönemi, hariç tutulacak yevmiye ve
+          bildirim aralıkları yönetilir.
         </li>
         <li>
-          Muhasebe ayarlarından hesaplama dönemi, hariç tutulacak
-          yevmiye ve bildirim aralıkları yönetilir.
+          Muhasebe, Ödeme, Satış, SMS ve PayTR sağlayıcı eklentisi
+          (payment_paytr_kt) gerekir.
         </li>
         <li>
-          Muhasebe, Ödeme, Satış, SMS ve PayTR
-          sağlayıcı eklentisi (payment_paytr_kt) gerekir.
-        </li>
-        <li>
-          Muhasebe kullanıcıları kayıtları
-          görüntüleyebilir; muhasebe yöneticileri
-          düzenleyebilir.
+          Muhasebe kullanıcıları kayıtları görüntüleyebilir; muhasebe
+          yöneticileri düzenleyebilir.
         </li>
       </ul>
     </div>
