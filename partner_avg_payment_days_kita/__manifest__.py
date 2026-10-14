@@ -1,10 +1,11 @@
 {
-    "name": "Partner Ortalama Vade Günleri",
+    "name": "Tahsilat Ekranları: Bakiyeye Ödeme Linki Oluşturma",
     "version": "18.0.1.0.3",
     "category": "Accounting",
-    "summary": "İş ortaklarının ortalama vade günlerini hesaplar",
+    "summary": "Tahsilat Ekranları ve Bakiyeye Ödeme Linki Oluşturma. İş ortaklarının ortalama vade günlerini hesaplar",
     "description": """
         Bu modül, iş ortaklarının ortalama vade günlerini (vade) hesaplar ve saklar.
+        Ayrıca tahsilat ekranlarında bakiyeye ödeme linki oluşturma özelliği sunar.
         Özellikler:
         - İş ortaklarının ortalama vade günlerini hesaplama
         - Arka planda çalışan cron işleri ile otomatik hesaplama
