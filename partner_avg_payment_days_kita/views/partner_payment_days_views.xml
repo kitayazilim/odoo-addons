@@ -94,7 +94,7 @@
                         </page>
                     </notebook>
                 </sheet>
-<chatter/>
+                <chatter/>
             </form>
         </field>
     </record>
@@ -133,6 +133,125 @@
                 <button name="action_email_data" title="Mail Gönder" type="object" icon="fa-envelope text-primary" invisible="balance &lt;= 0"/>
                 <button name="action_create_payment_link" title="Ödeme Linki Oluştur" type="object" icon="fa-link text-info" invisible="balance &lt;= 0"/>
             </list>
+        </field>
+    </record>
+
+    <!-- Partner Avg Payment Days Kanban View -->
+    <record id="view_partner_avg_payment_days_kanban" model="ir.ui.view">
+        <field name="name">partner.avg.payment.days.kanban</field>
+        <field name="model">partner.avg.payment.days</field>
+        <field name="arch" type="xml">
+            <kanban create="0" sample="1" default_order="balance desc">
+                <field name="partner_id"/>
+                <field name="sales_person_id"/>
+                <field name="category_id"/>
+                <field name="company_currency_id"/>
+                <field name="balance"/>
+                <field name="balance_curr"/>
+                <field name="balance_curr_overdue"/>
+                <field name="open_invoice_balance"/>
+                <field name="avg_days"/>
+                <field name="credit_avg_days"/>
+                <field name="debit_avg_days"/>
+                <field name="mobile"/>
+                <field name="phone"/>
+                <field name="last_activity_date"/>
+                <field name="sync_date"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <img class="rounded-circle shadow-sm flex-shrink-0" style="width:44px;height:44px;object-fit:cover;" t-attf-src="/web/image/res.partner/#{record.partner_id.raw_value}/avatar_128" t-att-alt="record.partner_id.value"/>
+                            <div class="flex-grow-1 overflow-hidden">
+                                <div class="fw-bold fs-5 text-truncate" t-esc="record.partner_id.value" t-att-title="record.partner_id.value"/>
+                                <div class="text-muted small text-truncate" t-if="record.mobile.raw_value or record.phone.raw_value">
+                                    <i class="fa fa-phone me-1"/>
+                                    <t t-esc="record.mobile.raw_value or record.phone.raw_value"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mb-3">
+                            <div class="col-7">
+                                <div class="rounded-3 bg-100 p-3 h-100">
+                                    <div class="text-muted text-uppercase small fw-semibold">Bakiye</div>
+                                    <div t-attf-class="fs-4 fw-bold text-truncate #{record.balance.raw_value &gt; 0 ? 'text-danger' : (record.balance.raw_value &lt; 0 ? 'text-success' : '')}">
+                                        <field name="balance" widget="monetary"/>
+                                    </div>
+                                    <div class="text-muted small mt-1" t-if="record.balance_curr_overdue.raw_value">
+                                        <i class="fa fa-exclamation-circle text-danger me-1"/>
+                                        Geçmiş:
+                                        <field name="balance_curr_overdue" widget="monetary"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-5">
+                                <div class="rounded-3 bg-100 p-3 h-100">
+                                    <div class="text-muted text-uppercase small fw-semibold">Ort. Vade</div>
+                                    <div t-attf-class="d-flex align-items-baseline gap-1 #{record.avg_days.raw_value &lt;= 30 ? 'text-success' : (record.avg_days.raw_value &lt;= 60 ? 'text-warning' : 'text-danger')}">
+                                        <span class="fs-3 fw-bold lh-1" t-esc="record.avg_days.raw_value.toFixed(0)"/>
+                                        <span class="small">gün</span>
+                                    </div>
+                                    <div class="progress mt-2" style="height:5px;">
+                                        <div t-attf-class="progress-bar #{record.avg_days.raw_value &lt;= 30 ? 'bg-success' : (record.avg_days.raw_value &lt;= 60 ? 'bg-warning' : 'bg-danger')}" t-attf-style="max-width:100%; width: #{record.avg_days.raw_value / 90 * 100}%"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 small mb-2">
+                            <div class="col-6">
+                                <div class="text-muted">Açık Sipariş</div>
+                                <div class="fw-semibold">
+                                    <field name="open_invoice_balance" widget="monetary"/>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-muted">Dövizli Bakiye</div>
+                                <div class="fw-semibold">
+                                    <field name="balance_curr" widget="monetary"/>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-muted">Alacak Ort. Vade</div>
+                                <div class="fw-semibold">
+                                    <t t-esc="record.credit_avg_days.raw_value.toFixed(0)"/>
+                                    gün
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-muted">Borç Ort. Vade</div>
+                                <div class="fw-semibold">
+                                    <t t-esc="record.debit_avg_days.raw_value.toFixed(0)"/>
+                                    gün
+                                </div>
+                            </div>
+                        </div>
+
+                        <field name="category_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+
+                        <div class="d-flex justify-content-between align-items-center border-top pt-2 mt-2">
+                            <div class="d-flex align-items-center gap-2 text-muted small">
+                                <field name="sales_person_id" widget="many2one_avatar_user" t-if="record.sales_person_id.raw_value"/>
+                                <span t-if="record.last_activity_date.raw_value" title="Son Hareket">
+                                    <i class="fa fa-history me-1"/>
+                                    <field name="last_activity_date" widget="remaining_days" style="display:inline-block;"/>
+                                </span>
+                            </div>
+                            <div class="d-flex gap-1" t-if="record.balance.raw_value &gt; 0">
+                                <button name="action_send_sms" type="object" class="btn btn-sm btn-light" title="SMS Gönder">
+                                    <i class="fa fa-comment text-success"/>
+                                </button>
+                                <button name="action_email_data" type="object" class="btn btn-sm btn-light" title="E-posta Gönder">
+                                    <i class="fa fa-envelope text-primary"/>
+                                </button>
+                                <button name="action_create_payment_link" type="object" class="btn btn-sm btn-light" title="Ödeme Linki Oluştur">
+                                    <i class="fa fa-link text-info"/>
+                                </button>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
         </field>
     </record>
 
@@ -177,7 +296,7 @@
     <record id="action_partner_avg_payment_days" model="ir.actions.act_window">
         <field name="name">Ortalama Ödeme Günleri</field>
         <field name="res_model">partner.avg.payment.days</field>
-        <field name="view_mode">list,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="search_view_id" ref="view_partner_avg_payment_days_search"/>
         <field name="context">{'search_default_balance': 1 }</field>
         <field name="help" type="html">
